@@ -1,0 +1,8 @@
+server:
+  port: 7070
+
+spring:
+  r2dbc:
+    url: r2dbc:pool:h2:mem:///testdb
+    username: rw_user
+    password: supersecure
