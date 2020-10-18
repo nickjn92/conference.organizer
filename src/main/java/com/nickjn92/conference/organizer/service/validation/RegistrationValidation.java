@@ -3,7 +3,6 @@ package com.nickjn92.conference.organizer.service.validation;
 import com.nickjn92.conference.organizer.domain.model.exception.BadRequestException;
 import com.nickjn92.conference.organizer.domain.model.request.ConferenceRegistrationRequest;
 import io.azam.ulidj.ULID;
-import java.util.Objects;
 import java.util.function.Predicate;
 import lombok.experimental.UtilityClass;
 import reactor.core.publisher.Mono;
@@ -43,14 +42,14 @@ public class RegistrationValidation {
   }
 
   private Mono<Void> validateUlid(String fieldName, String expectedUlid) {
-    return Mono.just(expectedUlid)
+    return Mono.justOrEmpty(expectedUlid)
         .filter(ULID::isValid)
         .switchIfEmpty(Mono.error(new BadRequestException(fieldName + " is not a valid id")))
         .then();
   }
 
   private Mono<Void> validateNotBlank(String fieldName, String fieldValue) {
-    return Mono.just(Objects.requireNonNullElse(fieldValue, ""))
+    return Mono.justOrEmpty(fieldValue)
         .filter(Predicate.not(String::isBlank))
         .switchIfEmpty(Mono.error(new BadRequestException(fieldName + " can not be blank")))
         .then();
