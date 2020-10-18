@@ -140,7 +140,7 @@ class RegistrationValidationTest extends AbstractRegistrationValidationTest {
   @Test
   void deregister_ValidRequest() {
     assertSuccessfullValidation(
-        RegistrationValidation.validateUnregisterRequest(
+        RegistrationValidation.validateDeregisterRequest(
             VALID_CONFERENCE_ID, VALID_REGISTRATION_ID),
         false);
   }
@@ -148,26 +148,26 @@ class RegistrationValidationTest extends AbstractRegistrationValidationTest {
   @Test
   void deregister_InvalidConferenceId() {
     assertFailedValidation(
-        RegistrationValidation.validateUnregisterRequest(
+        RegistrationValidation.validateDeregisterRequest(
             INVALID_CONFERENCE_ID, VALID_REGISTRATION_ID));
   }
 
   @Test
   void deregister_InvalidRegistrationId() {
     assertFailedValidation(
-        RegistrationValidation.validateUnregisterRequest(
+        RegistrationValidation.validateDeregisterRequest(
             VALID_CONFERENCE_ID, INVALID_REGISTRATION_ID));
   }
 
   @Test
   void deregister_MissingConferenceId() {
     assertFailedValidation(
-        RegistrationValidation.validateUnregisterRequest(null, VALID_REGISTRATION_ID));
+        RegistrationValidation.validateDeregisterRequest(null, VALID_REGISTRATION_ID));
   }
 
   @Test
   void deregister_MissingRegistrationId() {
     assertFailedValidation(
-        RegistrationValidation.validateUnregisterRequest(VALID_CONFERENCE_ID, null));
+        RegistrationValidation.validateDeregisterRequest(VALID_CONFERENCE_ID, null));
   }
 }

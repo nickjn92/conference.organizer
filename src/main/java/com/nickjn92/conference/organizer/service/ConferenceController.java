@@ -48,7 +48,7 @@ public class ConferenceController {
   public Mono<Void> deregister(
       @PathVariable("conference-id") String conferenceId,
       @PathVariable("registration-id") String registrationId) {
-    return RegistrationValidation.validateUnregisterRequest(conferenceId, registrationId)
+    return RegistrationValidation.validateDeregisterRequest(conferenceId, registrationId)
         .then(conferenceHandler.deregister(conferenceId, registrationId));
   }
 

@@ -36,7 +36,7 @@ public class RegistrationValidation {
         .thenReturn(request);
   }
 
-  public Mono<Void> validateUnregisterRequest(String conferenceId, String registrationId) {
+  public Mono<Void> validateDeregisterRequest(String conferenceId, String registrationId) {
     return validateUlid(CONFERENCE_ID_FIELD_NAME, conferenceId)
         .then(validateUlid(REGISTRATION_ID_FIELD_NAME, registrationId));
   }
